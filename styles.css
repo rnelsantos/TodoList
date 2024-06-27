@@ -1,20 +1,47 @@
 /* Var callouts*/
-:root {
+:root.light {
     --white: #fffbfb;
     --grey: #f0eef1;
     --black: #050505;
     
 
-    /* default root.light*/         
+    /* default root.light*/     
+    --inverse-background-color:#222; 
     --background-color: #f6f6f6;
     --font-color: #222;
     --font-lighter-color: #444;
+  }
 
-    :root.dark {
-        --background-color: #222;
-        --font-color: #f6f6f6;
-        --font-lighter-color: #ccc;
-      }
+
+:root.dark {
+    --inverse-background-color:#f6f6f6;
+    --background-color: #222;
+    --font-color: #f6f6f6;
+    --font-lighter-color: #ccc;
+  }
+
+    
+
+      /*holy grail format*/
+  @media (prefers-color-scheme: light) {
+  :root.dark {
+    --inverse-background-color:#f6f6f6;
+    --background-color: #222;
+    --font-color: #f6f6f6;
+    --font-lighter-color: #ccc;
+  }
+
+  :root.light {
+    --inverse-background-color:#222;
+    --font-color: #f6f6f6;
+    --background-color: #f6f6f6;
+    --font-color: #222;
+    --font-lighter-color: #444;
+  }
+}
+
+
+
 
 
 
@@ -50,20 +77,7 @@
     isolation: isolate;
   }
 
-/*holy grail format*/
-@media (prefers-color-scheme: light) {
-    :root.dark {
-      --background-color: #222;
-      --font-color: #f6f6f6;
-      --font-lighter-color: #ccc;
-    }
-  
-    :root {
-      --background-color: #f6f6f6;
-      --font-color: #222;
-      --font-lighter-color: #444;
-    }
-  }
+
 
 /*holy grail format*/
 .wrapper {
@@ -75,9 +89,10 @@
   }
   .wrapper > * {
     grid-column: 2;
-    margin:
+    margin:1em;
   
   }
+  
   .full-bleed {
     width: 100%;
     grid-column: 1 / 4;
@@ -94,10 +109,13 @@
 header{
     box-shadow: var(--shadow-elevation-medium);
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color:var(--background-color);
     z-index: 5;
+    padding-left:2rem;
+    padding-right:2rem;
+   
 }
 
 #logo{
@@ -110,6 +128,7 @@ header{
     display:flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 
@@ -117,7 +136,7 @@ header{
 
 /*NavPanel*/
 .NavPanel{
-    z-index: 1;
+z-index: 1;
 background-color: gainsboro;
 height:100vh;
 width:20%;
@@ -125,15 +144,20 @@ width:20%;
 
 
 /*Utilities*/
+.hide{
+  display: none;
+}
+
+
 .toggle-container{
-    border:2px solid red;
-    background-color: #050505;
+
 }
 
 .icon{
-    height:25px;
+    height:15px;
 }
 
+/*actual switch below*/ 
 .toggle-switch {
     display: block;
 }
@@ -143,35 +167,53 @@ width:20%;
 }
 
 .toggle-switch__control {
-    width: 40px;
-    height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+    width: 50px;
+    height: 18px;
     border-radius: 7px;
     position: relative;
 
-    background: #999;
-
+    background: var(--inverse-background-color);
     cursor: pointer;
-
     margin: 50px auto;
+
+    box-sizing:border-box;
+    border-radius: 200px;
+    border:1px solid rgba(0, 0, 0, 0.171);
+ 
 }
+
+
+
 
 .toggle-switch__control::after {
     content: '';
     display: block;
 
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 20px;
 
     position: absolute;
-    left: -1px;
+    left: -8px;
     top: -3px;
 
-    background: var(--background-color);
 
+    border:1px solid rgba(151, 146, 146, 0.726);
+    background: rgb(204, 204, 204);
     transition: left 0.25s;
+    box-shadow: var(--shadow-elevation-medium);
 }
 
 #toggle-input:checked + .toggle-switch__control::after {
-    left: 21px;
+    left: 38px;
+   
+}
+
+
+#toggle-input:checked + .toggle-switch__control {
+  background: var(--inverse-background-color)
 }

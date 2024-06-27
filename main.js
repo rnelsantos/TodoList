@@ -21,12 +21,12 @@ const darkIcon = document.getElementById('dark-icon');
 function updateUI(theme) {
     toggle.checked = theme === 'light';
 
-    if (theme === 'light') {
-        lightIcon.classList.add('active');
-        darkIcon.classList.remove('active');
+    if (theme === 'dark') {
+        lightIcon.classList.add('hide');
+        darkIcon.classList.remove('hide');
     } else {
-        darkIcon.classList.add('active');
-        lightIcon.classList.remove('active');
+        darkIcon.classList.add('hide');
+        lightIcon.classList.remove('hide');
     }
 }
 

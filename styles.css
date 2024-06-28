@@ -29,7 +29,7 @@
     --background-color: #f6f6f6;
     --background-color2: #c9c9c9;
     --font-color: #222;
-    --font-lighter-color: #444;
+    --font-lighter-color: #666666;
     
   }
 
@@ -96,6 +96,14 @@
     isolation: isolate;
   }
 
+  p:focus,
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline: none;
+  }
+
 
 
 /*holy grail format*/
@@ -149,9 +157,7 @@ header{
     filter: invert(var(--fillPerc)) ;
 }
 
-.iconMode{
-  color:var(--font-color);
-}
+
 
 .title-container{
     padding:15px;
@@ -159,6 +165,7 @@ header{
     justify-content: center;
     align-items: center;
     color:var(--font-color);
+    white-space: nowrap;
     
 }
 
@@ -171,7 +178,7 @@ transition: all 0.5s;
 background: var(--background-color);
 }
 
-/*NavPanel*/
+/*-------------------------------------NavPanel--------------------------------------*/
 .NavPanel{
   padding-top:10px;
 grid-column: 1;
@@ -179,36 +186,53 @@ z-index: 0;
 background: var(--background-color2);
 height:100vh;
 overflow:hidden;
-font-weight: 700;
+
 font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .menuBar{
-  cursor:default;
+  font-weight: 500;
+  margin-left:20px;
+  cursor:pointer;
   display:flex;
-  justify-content: center;
+  justify-content: left;
   align-items:center;
   gap:10px;
   padding:5px;
+  white-space: nowrap;
+  color:var(--font-color);
 }
 
 .menuBar:hover{
-  
-  display:flex;
-  justify-content: center;
-  align-items:center;
-  gap:10px;
   fill: brightness(50%);
-  background-color:rgba(255, 255, 255, 0.164);
+  background-color:rgba(255, 255, 255, 0.411);
 
 }
 
-
+#panelHeader{
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-top:10px;
+  margin-left:20px;
+  cursor:default;
+  display:flex;
+  justify-content: left;
+  align-items:center;
+  color:var(--font-color);
+}
 
 .navIcon{
-display:none;
+  display:none;
+  transform: scale(0.7);
+  cursor:pointer;
+  }
 
+
+.input-add-project-popup{
+  color:var(--font-color);
+  background:var(--background-color2)
 }
+
 
 @media screen and (max-width: 800px) {
 main{
@@ -216,11 +240,8 @@ main{
   grid-template-columns:0px 100%;
   }
     
-
-
-
 .showPanel{
-  grid-template-columns:50% 0%;
+  grid-template-columns:50% 50%;
   transition: all 0.3s;
 }
 
@@ -237,18 +258,80 @@ transition: all 0.5s;
 }
 
 
-/*Content-main*/
+/*--------------------Content-main------------------------*/
 .content{
 grid-column: 2;
-
+color:var(--font-color);
 background-color:var(--background-color);
-
 height:100vh;
+padding:20px;
+padding-top:10px;
+
+display:flex;
+flex-direction:column;
+gap:5px;
 }
 
-.sample{
 
 
+
+#currentActive{
+  width:100%;
+
+}
+
+
+
+#addTask{
+  display:flex;
+  justify-content: ;
+  align-items: center;
+  gap:10px;
+  font-family: arial;
+  font-weight: 700;
+
+  color:var(--font-lighter-color);
+}
+
+#addTask:hover{
+  cursor: pointer;
+  background-color:rgba(255, 255, 255, 0.514);
+  font-weight: 700;
+  border-radius:5px solid var(--font-color);
+  left:-2px;
+  color:var(--font-color);
+}
+
+#addTask-form{
+  font-family: arial;
+  font-size: 1em;
+  border:2px solid var(--font-lighter-color);
+  border-radius:10px;
+  padding: 10px;
+  color:var(--font-color);
+
+
+}
+
+.input-add-task-button{
+  font-weight: 600;
+
+}
+
+#input-addTask-title{
+  font-weight: 650;
+}
+
+.input-add-task-popup{
+  font-family: arial;
+  color:var(--font-color);
+  width:100%;
+  border-color: transparent;
+  background:var(--background-color);
+  resize: none;
+  
+
+  
 }
 
 
@@ -260,7 +343,17 @@ height:100vh;
 
 
 
-/*Utilities*/
+/*-----------------------------------Utilities-----------------------------------------*/
+#addTask-form > .cancel{
+  height:18px;
+  display:flex;
+  justify-content: end;
+  overflow: visible;
+}
+
+
+
+
 .hide{
   display: none;
 }

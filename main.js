@@ -12,8 +12,6 @@ function setTheme(theme, persist = false) {
 }
 
 
-
-
 const toggle = document.getElementById('toggle-input');
 const lightIcon = document.getElementById('light-icon');
 const darkIcon = document.getElementById('dark-icon');
@@ -44,3 +42,26 @@ const preferredTheme = localStorage.getItem('preferred-theme') || osPreference;
 
 setTheme(preferredTheme, false);
 updateUI(preferredTheme);
+
+
+
+const menu = document.querySelector(".navIcon");
+const main = document.querySelector("main");
+let menuStatus ="closed" ;
+
+menu.addEventListener('click', () => {
+
+if (menuStatus=== "closed") {
+    main.classList.add("showPanel"); 
+    menuStatus ="open" 
+}
+else{
+    main.classList.remove("showPanel");
+    menuStatus ="closed" 
+}
+
+console.log(menuStatus);
+
+
+
+});

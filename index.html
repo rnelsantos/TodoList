@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
     <link rel ="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/c6970a7e66.js" crossorigin="anonymous"></script>
     <script src="main.js" defer> </script>
 </head>
+
 <body>
     <header class="header">
+        <img src="./assets/navIcon.svg" alt="menu" class="navIcon" id='logo'>
         <div class="title-container">
             <img src="./assets/tickLogo.svg" alt="Logo" id="logo">
             <h1>Todo List</h1>
         </div>
         <div class="toggle-container">
-         
-
             <label class="toggle-switch" for="toggle-input">
-
                 <input id="toggle-input" type="checkbox">
                 <div class="toggle-switch__control">
                     <img src="https://radek.io/files/light-icon.svg" id="light-icon" class="icon">
@@ -25,13 +25,18 @@
                 </div>
             </label>
         </div>
-             
-               
-        
     </header>
-    <div class="NavPanel">
+    <main class="main-container showPanel">
+        <div class="NavPanel " >
 
-    </div>
-    
+            <nav class="menuBar iconMode"><i class="fa-solid fa-inbox" ></i>INBOX</nav>
+            <nav class="menuBar iconMode"><i class="fa-solid fa-inbox" ></i>INBOX</nav>
+            
+
+        </div>
+        <div class="content wrapper">
+            <div class="sample"></div>
+        </div>
+    </main> 
 </body>
 </html>

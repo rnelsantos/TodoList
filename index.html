@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="./assets/tickLogo.svg">
     <link rel ="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/c6970a7e66.js" crossorigin="anonymous"></script>
+    <script src="UI.js" defer> </script>
     <script src="main.js" defer> </script>
 </head>
 
@@ -41,8 +42,8 @@
                 <div class="menuBar ">Newsletter Website</div>
 
             </div>
-            <nav class="menuBar "><i class="fa-solid fa-plus">  </i></i>Add project <input class="input-add-project-popup hide" id="input-addTask-title" type="text" placeholder="Project Name"></nav>
-
+            <nav class="menuBar addProject"><i class="fa-solid fa-plus">  </i></i>Add project</nav>
+            <nav class="menuBar addProjectForm hide"><i class="fa-solid fa-plus">  </i></i><input  type="text" placeholder="Project Name"></nav>
             
         </div>
         <div class="content wrapper">
@@ -50,17 +51,15 @@
             <div class="taskList">
             </div>  
 
-            <div id="addTask">
+            <div class="addTask" >
                 <i class="fa-solid fa-plus">  </i>
-                <p>ADD TASK </p>
+                <p >ADD TASK </p>
             </div>
 
 
-            <div id="addTask-form">
-            <div class="cancel"><input class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark" ></i> </i></div>
-      
-      
-                
+            <div class="addTask-form hide">
+                <div class="cancel"><input class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark Xcancel" ></i> </i></div>
+
                 <textarea class="input-add-task-popup" id="input-addTask-description" type="text-area" placeholder="Details"></textarea>
                 <button class="input-add-task-button ">DUE DATE</button>
                 <button class="input-add-task-button">PRIORITY</button>

@@ -282,18 +282,17 @@ gap:5px;
 
 
 
-#addTask{
+.addTask{
   display:flex;
   justify-content: ;
   align-items: center;
   gap:10px;
   font-family: arial;
   font-weight: 700;
-
   color:var(--font-lighter-color);
 }
 
-#addTask:hover{
+.addTask:hover{
   cursor: pointer;
   background-color:rgba(255, 255, 255, 0.514);
   font-weight: 700;
@@ -302,7 +301,7 @@ gap:5px;
   color:var(--font-color);
 }
 
-#addTask-form{
+.addTask-form{
   font-family: arial;
   font-size: 1em;
   border:2px solid var(--font-lighter-color);
@@ -344,7 +343,7 @@ gap:5px;
 
 
 /*-----------------------------------Utilities-----------------------------------------*/
-#addTask-form > .cancel{
+.addTask-form > .cancel{
   height:18px;
   display:flex;
   justify-content: end;
@@ -353,8 +352,14 @@ gap:5px;
 
 
 
+.addTask-form > .cancel > i:hover{
+  cursor: pointer;
+  fill: #DA4567;
+  filter: invert(0.04) sepia(1) saturate(20) hue-rotate(302.4deg) brightness(0.73);
+}
 
-.hide{
+
+.hide, #hide{
   display: none;
 }
 

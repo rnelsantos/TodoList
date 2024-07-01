@@ -5,9 +5,8 @@ let projectList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_key))||[];
 
 // save point for current Selected local
 const LOCAL_STORAGE_SELECTED_PROJECT_KEY_ID = "project.selected.list"
-let selectedProjectID = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_KEY_ID))
-
-
+let selectedProjectID = null;
+selectedProjectID = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_KEY_ID));
 
 
 function saveLocal() {
@@ -16,7 +15,7 @@ function saveLocal() {
     
 }
 
-//Project Constructor
+//Project Constructor|| e.target.closest.firstChild.toLowerCase() === 'p'
 function newProject (name) {
     const projectName = name;
     const ID = (Date.now()).toString();
@@ -31,7 +30,7 @@ function newTask (name, details, dueDate,priority,complete) {
     return {TaskName,details, dueDate,priority,complete}
 }
 
-//create IIFE module Pattern
+//RENDER AND DISPLAY IIFE module Pattern
 const render =(function (){
     
 
@@ -71,26 +70,30 @@ const render =(function (){
 
 
 
-
-
-
-
-
-
-
-
-
-
 //declare DOM  variables
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const newprojectForm = document.querySelector('[data-new-project-form]');
 const projectListContainer = document.querySelector("[data-project-list]");
 
 
+//Event listners and operations  IIFE module Pattern
+const event =(function (){
 
+    //Submit New Project Form
+    newprojectForm.addEventListener("submit",e =>{
+        e.preventDefault()
+        const projectName = newProjectInput.value;
+        if (projectName == null || projectName === "") return
+        const project = newProject(projectName);
+        newProjectInput.value=null;
+        projectList.push(project);
+        saveLocal();render.projectListDisplay(projectListContainer);
+        addProjectBTN.classList.remove("hide");
+        addProjectForm.classList.add("hide");
+    })
 
-//Event Listeners
-newprojectForm.addEventListener("submit",e =>{
+    //Event Listeners
+    newprojectForm.addEventListener("submit",e =>{
     e.preventDefault()
     const projectName = newProjectInput.value;
     if (projectName == null || projectName === "") return
@@ -98,66 +101,111 @@ newprojectForm.addEventListener("submit",e =>{
     newProjectInput.value=null;
     projectList.push(project);
     saveLocal();render.projectListDisplay(projectListContainer);
+    addProjectBTN.classList.remove("hide");
+    addProjectForm.classList.add("hide");
+    })
 
-})
+    //Select Active Project-list
+    projectListContainer.addEventListener('click', (e) => {
+    console.log( e.target.tagName.toLowerCase() ) 
+    if (e.target.tagName.toLowerCase() === 'li'|| e.target.tagName.toLowerCase() === 'p') {  //debug Text not clickable   //|| e.target.tagName.toLowerCase() === 'p' 
+        console.log("hi")
+      
+        selectedProjectID = e.target.closest("li").dataset.listID
+        saveLocal(); render.projectListDisplay();
+    }
+    })
+    
 
 
 
 
-//display Local Stored upon load
+
+
+
+
+
+
+
+
+
+    
+    
+    return{};
+})();
+
+//initial Load Calls
 render.projectListDisplay(projectListContainer);
 
-projectListContainer.addEventListener('click', (e) => {
-    if (e.target.tagName.toLowerCase() === 'li') {
-        selectedProjectID = e.target.dataset.listID
-        saveLocal(); render.projectListDisplay();
 
-//event Listeners for edit/delete active Projects
+
+
+
+
+//event Listeners for EDIT/DELETE active Projects
 const activeProjectContainer = document.querySelector(".active-project");
 const ProjectEditIcon = document.querySelector(".projectEditIcon");
 const activeTitle = document.querySelector(".activeTitle");
 
+        //listener for edit/delete active project
         ProjectEditIcon.addEventListener('click', (e) => {
         activeProjectContainer.removeChild(ProjectEditIcon);
+        //create trash icon
         const ProjectDeleteIcon = document.createElement("i")
         ProjectDeleteIcon.classList.add("fa-solid")
         ProjectDeleteIcon.classList.add("fa-trash-can")
         ProjectDeleteIcon.classList.add("ProjectDeleteIcon")
+        //create Cancel icon
+        const ProjectCancelIcon = document.createElement("i")
+        ProjectCancelIcon.classList.add("fa-solid")
+        ProjectCancelIcon.classList.add("fa-xmark")
+        ProjectCancelIcon.classList.add("ProjectCancelIcon")
         activeProjectContainer.removeChild(activeTitle);
-        console.log(activeTitle.textContent);
+        //create rename form
+        const renameInputForm = document.createElement("form")
+        renameInputForm.setAttribute("action","");
+      
+        
         const renameInput = document.createElement("input")
         renameInput.setAttribute("type","input");
         renameInput.classList.add("addProject-input");
         renameInput.value = activeTitle.textContent
     
        
-         
-        activeProjectContainer.appendChild(renameInput);
+        activeProjectContainer.appendChild(renameInputForm);
+        renameInputForm.appendChild(renameInput);
         activeProjectContainer.appendChild(ProjectDeleteIcon);
+        activeProjectContainer.appendChild(ProjectCancelIcon);
 
-            
+
+
+        renameInputForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            projectList.forEach(project =>
+                {
+                if (project.ID === selectedProjectID) project.projectName = renameInput.value;
+                })
+            saveLocal(); render.projectListDisplay();
+        });
+
             ProjectDeleteIcon.addEventListener('click', (e) => {
             projectList =  projectList.filter(project => project.ID !== selectedProjectID )
             selectedProjectID = null;
             saveLocal(); render.projectListDisplay();
             });
 
-            /*
-            <input 
-            data-new-project-input 
-            class="addProject-input" 
-            type="text" 
-            placeholder="Project Name"
-            />
-            */
-
-
-
-
+            ProjectCancelIcon.addEventListener('click', (e) => {
+                saveLocal(); render.projectListDisplay();
+                });
 
         })
-    }
-})
+
+
+
+
+
+
+
 
 
 /* 

@@ -60,7 +60,10 @@ const render =(function (){
             editIcon.classList.add("projectEditIcon")
             listElement.appendChild(editIcon);
             pElement.classList.add("activeTitle");
+            //
+
         }
+
         projectListContainer.appendChild(listElement)
         })
     }
@@ -74,6 +77,9 @@ const render =(function (){
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const newprojectForm = document.querySelector('[data-new-project-form]');
 const projectListContainer = document.querySelector("[data-project-list]");
+
+//initial Load Calls
+render.projectListDisplay(projectListContainer);
 
 
 //Event listners and operations  IIFE module Pattern
@@ -108,47 +114,23 @@ const event =(function (){
     //Select Active Project-list
     projectListContainer.addEventListener('click', (e) => {
     console.log( e.target.tagName.toLowerCase() ) 
-    if (e.target.tagName.toLowerCase() === 'li'|| e.target.tagName.toLowerCase() === 'p') {  //debug Text not clickable   //|| e.target.tagName.toLowerCase() === 'p' 
-        console.log("hi")
-      
+    if (e.target.tagName.toLowerCase() === 'li'|| e.target.tagName.toLowerCase() === 'p') {  
         selectedProjectID = e.target.closest("li").dataset.listID
-        saveLocal(); render.projectListDisplay();
+        saveLocal(); 
+        render.projectListDisplay();
+        event.listenEditProject();
     }
     })
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    return{};
-})();
-
-//initial Load Calls
-render.projectListDisplay(projectListContainer);
-
-
-
-
-
-
-//event Listeners for EDIT/DELETE active Projects
-const activeProjectContainer = document.querySelector(".active-project");
-const ProjectEditIcon = document.querySelector(".projectEditIcon");
-const activeTitle = document.querySelector(".activeTitle");
-
-        //listener for edit/delete active project
-        ProjectEditIcon.addEventListener('click', (e) => {
+    //Select Active Project-list
+    const listenEditProject = () => {
+        //event Listeners for EDIT/DELETE active Projects
+    const activeProjectContainer = document.querySelector(".active-project");
+    const ProjectEditIcon = document.querySelector(".projectEditIcon");
+    const activeTitle = document.querySelector(".activeTitle");
+    //listener for edit/delete active project
+    ProjectEditIcon.addEventListener('click', (e) => {
         activeProjectContainer.removeChild(ProjectEditIcon);
         //create trash icon
         const ProjectDeleteIcon = document.createElement("i")
@@ -164,21 +146,17 @@ const activeTitle = document.querySelector(".activeTitle");
         //create rename form
         const renameInputForm = document.createElement("form")
         renameInputForm.setAttribute("action","");
-      
-        
+        //create rename input
         const renameInput = document.createElement("input")
         renameInput.setAttribute("type","input");
         renameInput.classList.add("addProject-input");
         renameInput.value = activeTitle.textContent
-    
-       
+        //append everything to display
         activeProjectContainer.appendChild(renameInputForm);
         renameInputForm.appendChild(renameInput);
         activeProjectContainer.appendChild(ProjectDeleteIcon);
         activeProjectContainer.appendChild(ProjectCancelIcon);
-
-
-
+        //actual eventlisteners  for Rename,delete and cancel (set every editIcon is clicked)
         renameInputForm.addEventListener('submit', (e) => {
             e.preventDefault()
             projectList.forEach(project =>
@@ -187,18 +165,30 @@ const activeTitle = document.querySelector(".activeTitle");
                 })
             saveLocal(); render.projectListDisplay();
         });
-
-            ProjectDeleteIcon.addEventListener('click', (e) => {
+        ProjectDeleteIcon.addEventListener('click', (e) => {
             projectList =  projectList.filter(project => project.ID !== selectedProjectID )
             selectedProjectID = null;
             saveLocal(); render.projectListDisplay();
-            });
+        });
+        ProjectCancelIcon.addEventListener('click', (e) => {
+            saveLocal(); render.projectListDisplay();
+        });
+    })
+    }
 
-            ProjectCancelIcon.addEventListener('click', (e) => {
-                saveLocal(); render.projectListDisplay();
-                });
 
-        })
+    
+    return{listenEditProject};
+})();
+
+
+
+
+
+event.listenEditProject();
+
+
+
 
 
 

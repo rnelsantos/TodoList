@@ -85,7 +85,7 @@ addTaskcancel.addEventListener("click", () => {
 
 const addProjectBTN = document.querySelector(".addProject");
 const addProjectForm = document.querySelector(".addProjectForm");
-
+const ProjectCancel = document.querySelector(".ProjectCancel");
 
 
 addProjectBTN.addEventListener("click", () => {
@@ -94,8 +94,10 @@ addProjectBTN.addEventListener("click", () => {
 
 })
 
-addTaskcancel.addEventListener("click", () => {
-    addTaskForm.classList.add("hide");
-    addTask.classList.remove("hide");
+ProjectCancel.addEventListener("click", () => {
+    addProjectBTN.classList.remove("hide");
+    addProjectForm.classList.add("hide");
 
 })
+
+

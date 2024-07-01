@@ -8,7 +8,7 @@
     <link rel ="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/c6970a7e66.js" crossorigin="anonymous"></script>
     <script src="UI.js" defer> </script>
-    <script src="main.js" defer> </script>
+    <script  src="main.js" defer> </script>
 </head>
 
 <body>
@@ -36,14 +36,26 @@
             <nav class="menuBar "><i class="fa-solid fa-calendar-week"></i></i>THIS WEEK</nav>
             <h2 class="iconMode" id="panelHeader">PROJECTS</h2>
 
-            <div class="projectList"class="menuBar ">
-                <div class="menuBar ">Work Tasks</div>
-                <div class="menuBar ">House Chorse / Bills</div>
-                <div class="menuBar ">Newsletter Website</div>
+            <ul class="projectList" class="menuBar" data-project-list>
+                <li class="menuBar ">Work Tasks</li>
+                <li class="menuBar ">House Chorse / Bills</li>
+                <li class="menuBar ">Newsletter Website</li>
+            </ul>
 
-            </div>
             <nav class="menuBar addProject"><i class="fa-solid fa-plus">  </i></i>Add project</nav>
-            <nav class="menuBar addProjectForm hide"><i class="fa-solid fa-plus">  </i></i><input  type="text" placeholder="Project Name"></nav>
+            <nav class="addProjectForm hide">
+                <i class="fa-solid fa-plus">  </i></i>
+                <form action="" data-new-project-form>
+                    <input 
+                    data-new-project-input 
+                    class="addProject-input" 
+                    type="text" 
+                    placeholder="Project Name"
+                    />
+                </form>
+                <i class="fa-solid fa-check ProjectEnter"></i>
+                <i class="fa-solid fa-xmark ProjectCancel" ></i>
+            </nav>
             
         </div>
         <div class="content wrapper">
@@ -61,7 +73,7 @@
                 <div class="cancel"><input class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark Xcancel" ></i> </i></div>
 
                 <textarea class="input-add-task-popup" id="input-addTask-description" type="text-area" placeholder="Details"></textarea>
-                <button class="input-add-task-button ">DUE DATE</button>
+                <input type="date" class="input-add-task-button ">
                 <button class="input-add-task-button">PRIORITY</button>
        
                 <button class="input-add-task-button">ADD TASK</button>

@@ -60,7 +60,7 @@ else{
     menuStatus ="closed" 
 }
 
-console.log(menuStatus);
+
 });
 
 
@@ -101,3 +101,15 @@ ProjectCancel.addEventListener("click", () => {
 })
 
 
+
+
+function changeColor(value){ //change color for prio select on add task
+    const prioInput = document.querySelector(".priority-input");
+    if(value  === "high") {prioInput.style.color ="greenyellow";}
+    if(value  === "high") {prioInput.style.color ="orange";}
+    if(value  === "high") {prioInput.style.color ="orangered";}
+    
+   
+
+
+}

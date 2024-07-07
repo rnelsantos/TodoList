@@ -71,13 +71,17 @@
 
             <div class="addTask-form hide">
                 <div class="cancel"><input class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark Xcancel" ></i> </i></div>
-
-                <textarea class="input-add-task-popup" id="input-addTask-description" type="text-area" placeholder="Details"></textarea>
-                <input type="date" class="input-add-task-button ">
-                <button class="input-add-task-button">PRIORITY</button>
-       
-                <button class="input-add-task-button">ADD TASK</button>
-   
+                <form action="" data-new-task-form>
+                    <textarea 
+                        class="input-add-task-popup" 
+                        id="input-addTask-description" 
+                        type="text-area" 
+                        placeholder="Details">
+                    </textarea>
+                    <input type="date" class="input-add-task-button ">
+                    <button class="input-add-task-button">PRIORITY</button>
+                    <button class="input-add-task-button">ADD TASK</button>
+                </form>
             </div>
             
 

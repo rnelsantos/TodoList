@@ -504,6 +504,8 @@ gap:5px;
     margin: 0;
     box-sizing: border-box;
 }
+
+
 input[type="date"]{
     background-color: var(--background-color2);
     color: var(--font-color);
@@ -514,7 +516,79 @@ input[type="date"]{
     outline: none;
     border-radius: 5px;
     text-align: center;
+    height:2rem;
+    margin-left:0;
 }
+
+.priority-input{
+  background-color: var(--background-color2);
+  color: var(--font-color);
+  padding: 2px;
+  font-family: "Roboto Mono",monospace;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  text-align: center;
+  height:2rem; 
+  font-weight: 600;
+  
+  
+}
+
+.low, .mid, .high{
+  background-color: rgb(78, 78, 78);
+  border-radius: 5px;
+}
+
+.low{
+  color:var(--font-color);
+}
+
+.low{
+  color:green;  
+}
+.mid{
+  color:orange;
+
+}
+.high{
+  color:red;
+
+}
+
+
+.input-add-task-button{
+  background-color: var(--background-color);
+  color: var(--font-color);
+  padding: 2px;
+  font-family: "Roboto Mono",monospace;
+  font-size: 18px;
+  border: none;
+  border:2px solid  gray;
+  border-radius: 5px;
+  text-align: center;
+  height:2rem;
+  padding-left:10px;
+  padding-right:10px;
+  margin-left:auto;
+  margin-right:0;
+}
+
+
+
+.input-add-task-button:hover{
+  cursor: pointer;
+  background-color: var(--background-color2);
+}
+
+.addTaskInsideContainer{
+  display:flex;
+  gap:10px;
+ 
+}
+
+
 ::-webkit-calendar-picker-indicator{
     background-color: rgb(228, 228, 228);
     padding: 5px;

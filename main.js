@@ -73,10 +73,16 @@ const render =(function (){
 
 
 
-//declare DOM  variables
+//declare DOM  variables for New Project Form
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const newprojectForm = document.querySelector('[data-new-project-form]');
 const projectListContainer = document.querySelector("[data-project-list]");
+
+const newTaskNameInput = document.querySelector('[data-new-taskName-input]');
+const newTaskDetailsInput = document.querySelector('[data-new-taskDetails-input]');
+const newTaskDateInput = document.querySelector('[data-new-taskDate-input]');
+
+
 
 //initial Load Calls
 render.projectListDisplay(projectListContainer);
@@ -84,6 +90,20 @@ render.projectListDisplay(projectListContainer);
 
 //Event listners and operations  IIFE module Pattern
 const event =(function (){
+
+
+        //Submit New Task Form
+        newprojectForm.addEventListener("submit",e =>{
+            e.preventDefault()
+            const projectName = newProjectInput.value;
+            if (projectName == null || projectName === "") return
+            const project = newProject(projectName);
+            newProjectInput.value=null;
+            projectList.push(project);
+            saveLocal();render.projectListDisplay(projectListContainer);
+            addProjectBTN.classList.remove("hide");
+            addProjectForm.classList.add("hide");
+        })
 
     //Submit New Project Form
     newprojectForm.addEventListener("submit",e =>{
@@ -156,7 +176,7 @@ const event =(function (){
         renameInputForm.appendChild(renameInput);
         activeProjectContainer.appendChild(ProjectDeleteIcon);
         activeProjectContainer.appendChild(ProjectCancelIcon);
-        //actual eventlisteners  for Rename,delete and cancel (set every editIcon is clicked)
+        //eventlisteners  for Rename, delete and cancel (set everytime editIcon is clicked)
         renameInputForm.addEventListener('submit', (e) => {
             e.preventDefault()
             projectList.forEach(project =>
@@ -172,6 +192,7 @@ const event =(function (){
         });
         ProjectCancelIcon.addEventListener('click', (e) => {
             saveLocal(); render.projectListDisplay();
+            event.listenEditProject();
         });
     })
     }

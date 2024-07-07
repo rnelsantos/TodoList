@@ -134,6 +134,7 @@
 body{
   display:grid;
   gap:1px;
+  overflow-y:hidden
 }
 
 /*Header*/
@@ -318,6 +319,8 @@ padding-top:10px;
 display:flex;
 flex-direction:column;
 gap:5px;
+overflow-y: scroll;
+scrollbar-width: 1px;
 }
 
 

@@ -11,9 +11,10 @@ selectedProjectID = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJE
 
 function saveLocal() {
     localStorage.setItem(LOCAL_STORAGE_LIST_key,JSON.stringify(projectList));
-    localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_KEY_ID,JSON.stringify(selectedProjectID))
-    
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_KEY_ID,JSON.stringify(selectedProjectID))   
 }
+
+
 
 //Project Constructor|| e.target.closest.firstChild.toLowerCase() === 'p'
 function newProject (name) {
@@ -25,10 +26,35 @@ function newProject (name) {
 }
 
 //Task Constructor
-function newTask (name, details, dueDate,priority,complete) {
+function newTask (name, details, dueDate,priority, ID, complete) {
     const TaskName = name;
-    return {TaskName,details, dueDate,priority,complete}
+    return {TaskName, details, dueDate, priority, ID, complete}
 }
+
+
+
+const createTask = (TaskName, details, dueDate, priority, ID) => {
+    const task = newTask(TaskName, details, dueDate, priority, ID , false);
+
+    const activeProject = projectList.find(project  => project.ID === selectedProjectID)
+    activeProject.taskArray.push(task);
+
+    saveLocal();render.projectListDisplay(projectListContainer);
+    console.log(projectList)
+    }
+
+
+  
+
+
+
+
+
+
+//for render DOM declerations
+const taskTemplate = document.querySelector("#task-template");
+const taskContainer = document.querySelector("[data-task-container]")
+
 
 //RENDER AND DISPLAY IIFE module Pattern
 const render =(function (){
@@ -62,11 +88,44 @@ const render =(function (){
             pElement.classList.add("activeTitle");
             //
             render.displayActiveTitle(project.projectName);
+            render.taskListDisplay(project);
         }
        
         projectListContainer.appendChild(listElement)
         })
     }
+
+    const taskListDisplay = (selectedProject) => {  //ongoing
+        selectedProject.taskArray.forEach(task => {
+            const taskElement = document.importNode(taskTemplate.content, true) 
+            const checkbox = taskElement.querySelector("input");
+            const label = taskElement.querySelector("label");
+            const dueDate = taskElement.querySelector(".date");
+            const prio = taskElement.querySelector(".prio");
+            const taskDetails = taskElement.querySelector(".taskDetails");
+
+            console.log(task)
+            checkbox.id = task.ID
+            checkbox.checked = task.complete;
+            label.setAttribute("for", task.ID)
+            label.append(task.TaskName)
+            taskDetails.append(task.details)
+
+            dueDate.append(task.dueDate)
+            prio.append(task.priority)
+
+            taskContainer.appendChild(taskElement);
+
+        })
+    }
+
+
+
+
+
+
+
+
 
     const displayActiveTitle = (title) => {
         const displayTitle = document.querySelector("#currentActiveTitle")
@@ -75,7 +134,7 @@ const render =(function (){
 
     }
 
-    return{clearElements,projectListDisplay, displayActiveTitle};
+    return{clearElements,projectListDisplay, displayActiveTitle, taskListDisplay};
 })();
 
 
@@ -84,7 +143,7 @@ const render =(function (){
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const newprojectForm = document.querySelector('[data-new-project-form]');
 const projectListContainer = document.querySelector("[data-project-list]");
-
+//declare DOM  variables for New Task Form
 const newTaskNameInput = document.querySelector('[data-new-taskName-input]');
 const newTaskDetailsInput = document.querySelector('[data-new-taskDetails-input]');
 const newTaskDateInput = document.querySelector('[data-new-taskDate-input]');
@@ -152,6 +211,7 @@ const event =(function (){
         saveLocal(); 
         render.projectListDisplay();
         event.listenEditProject();
+        
         
     }
     })
@@ -229,8 +289,7 @@ const event =(function (){
 event.listenEditProject();
 
 
-
-
+//createTask("Jogging", "around gateway for 30mins / 5km", "02/26/2025"  ,"mid", "123") ;
 
 
 

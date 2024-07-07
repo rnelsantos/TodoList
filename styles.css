@@ -235,7 +235,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
 .addProjectForm{
   font-weight: 500;
-  margin-left:20px;
+  margin-left:10px;
   cursor:pointer;
   display:flex;
   justify-content: left;
@@ -312,7 +312,7 @@ grid-column: 2;
 color:var(--font-color);
 background-color:var(--background-color);
 height:100vh;
-padding:20px;
+padding:10px;
 padding-top:10px;
 
 display:flex;
@@ -336,14 +336,14 @@ gap:5px;
   align-items: center;
   gap:10px;
   font-family: arial;
-  font-weight: 700;
+  font-weight: 600;
   color:var(--font-lighter-color);
 }
 
 .addTask:hover{
   cursor: pointer;
   background-color:rgba(255, 255, 255, 0.027);
-  font-weight: 700;
+  font-weight: 600;
   border-radius:5px solid var(--font-color);
   left:-2px;
   color:var(--font-color);
@@ -353,11 +353,12 @@ gap:5px;
   display:grid;
   font-family: arial;
   font-size: 1em;
+  width:100%;
   border:2px solid var(--font-lighter-color);
   border-radius:10px;
-  padding: 10px;
+  padding: 8px;
   color:var(--font-color);
-  gap:10px;
+  gap:5px;
   overflow:scroll;
   scrollbar-width: none;
 }
@@ -365,7 +366,7 @@ gap:5px;
 
 
 .input-add-task-button{
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -395,16 +396,16 @@ gap:5px;
   border-radius: 10px;
   padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .taskContainer{
   align-items: center;
   position: relative;
   margin-bottom: 1em;
-  font-size: 13px;
+
   cursor: default;
-  gap:10px;
+
 }
 
 
@@ -436,12 +437,12 @@ gap:5px;
   transform: scale (1);
   transition: transform 300ms ease-in-out;
   font-size:2em;
- 
+  position: relative;
+  bottom: -3px;;
 }
 
 .taskContainer:hover label .custom-checkbox {
  transform: scale (1.2);
-
  cursor: pointer;
 }
 
@@ -612,9 +613,9 @@ background: green;
 input[type="date"]{
     background-color: var(--background-color2);
     color: var(--font-color);
-    padding: 2px;
-    font-family: "Roboto Mono",monospace;
-    font-size: 18px;
+    padding: 1px;
+
+    font-size: 1rem;
     border: none;
     outline: none;
     border-radius: 5px;

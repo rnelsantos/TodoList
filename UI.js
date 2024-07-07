@@ -113,3 +113,23 @@ function changeColor(value){ //change color for prio select on add task
 
 
 }
+
+
+
+
+/*
+<template id="task-template">
+<div class="taskContainer">
+    <input 
+    id="task-1"
+    type="checkbox">
+    <label  for="task-1">
+        <span class="custom-checkbox"></span>
+        Pay Bills
+    </label>
+    
+    <p class="taskDetails">primeWater , Meralco , FiberBlaze, Rent, Credit Card</p>
+    <p class="date">Due Date: 02/26/2025</p>
+</div>
+</template>
+*/

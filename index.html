@@ -63,21 +63,10 @@
             <div class="taskList">
         </div>  
 
-        <div class="taskList-container">
-            <div class="taskContainer">
-    
-                <input 
-                id="task-1"
-                type="checkbox">
-                <label  for="task-1">
-                    <span class="custom-checkbox"></span>
-                    Pay Bills
-                </label>
-                
-                <p class="taskDetails">primeWater , Meralco , FiberBlaze, Rent, Credit Card</p>
-                <p class="date">Due Date: 02/26/2025</p>
-            </div>
-            
+        <div class="taskList-container" data-task-container>
+     
+
+           
         </div>
 
         <div class="addTask" >
@@ -96,13 +85,13 @@
 
                 <div class="addTaskInsideContainer">
                     <input data-new-taskDate-input type="date" class="input-add-task-button">
-                    <select onchange="changeColor(this.value)" name="priority" id="prio" class="priority-input">
+                    <select data-new-prio-input onchange="changeColor(this.value)" name="priority" id="prio" class="priority-input">
                         <option class="setPrio" value="">Set Priority</option>
                         <option class="low" value="low">Low</option>
                         <option class="mid" value="mid">Mid</option>
                         <option class="high" value="high">High</option>
                     </select>
-                    <button class="input-add-task-button">ADD TASK</button>
+                    <button input-add-task-button class="input-add-task-button">ADD TASK</button>
                 </div>
    
             </div>
@@ -112,5 +101,25 @@
             
         </div>
     </main> 
+
+
+
+    <template id="task-template">
+        <div class="taskContainer">
+            <input 
+           
+            type="checkbox">
+            <label  >
+                <span class="custom-checkbox"></span>
+               
+            </label>
+            
+            <p class="taskDetails"></p>
+            <p class="date"></p>
+            <p class="prio"></p>
+        </div>
+    </template>
+
+
 </body>
 </html>

@@ -26,8 +26,9 @@ function newProject (name) {
 }
 
 //Task Constructor
-function newTask (name, details, dueDate,priority, ID, complete) {
+function newTask (name, details, dueDate,priority, complete) {
     const TaskName = name;
+    const ID = (Date.now()).toString();
     return {TaskName, details, dueDate, priority, ID, complete}
 }
 
@@ -96,6 +97,7 @@ const render =(function (){
     }
 
     const taskListDisplay = (selectedProject) => {  //ongoing
+        render.clearElements(taskContainer)
         selectedProject.taskArray.forEach(task => {
             const taskElement = document.importNode(taskTemplate.content, true) 
             const checkbox = taskElement.querySelector("input");
@@ -104,7 +106,7 @@ const render =(function (){
             const prio = taskElement.querySelector(".prio");
             const taskDetails = taskElement.querySelector(".taskDetails");
 
-            console.log(task)
+            
             checkbox.id = task.ID
             checkbox.checked = task.complete;
             label.setAttribute("for", task.ID)
@@ -118,11 +120,6 @@ const render =(function (){
 
         })
     }
-
-
-
-
-
 
 
 
@@ -147,7 +144,8 @@ const projectListContainer = document.querySelector("[data-project-list]");
 const newTaskNameInput = document.querySelector('[data-new-taskName-input]');
 const newTaskDetailsInput = document.querySelector('[data-new-taskDetails-input]');
 const newTaskDateInput = document.querySelector('[data-new-taskDate-input]');
-const addTaskBTN = document.querySelector('.input-add-task-button');
+const newTaskPrioInput = document.querySelector('[data-new-prio-input]');
+const addTaskBTN = document.querySelector('[input-add-task-button]');
 
 
 //initial Load Calls
@@ -165,12 +163,12 @@ const event =(function (){
         if (taskName == null || taskName === "") return
         const TaskDetails = newTaskDetailsInput.value;
         //if (TaskDetails == null || TaskDetails === "") return
+        priority = newTaskPrioInput.value
+         date= newTaskDateInput.value.toString() 
         
-        const project = newProject(projectName);
-
-
-        newProjectInput.value=null;
-        projectList.push(project);
+        console.log(date);
+        createTask(taskName, TaskDetails,  date ,priority) ;
+        newTaskNameInput.value=null;
         saveLocal();render.projectListDisplay(projectListContainer);
         addProjectBTN.classList.remove("hide");
         addProjectForm.classList.add("hide");
@@ -211,6 +209,7 @@ const event =(function (){
         saveLocal(); 
         render.projectListDisplay();
         event.listenEditProject();
+        
         
         
     }
@@ -289,7 +288,7 @@ const event =(function (){
 event.listenEditProject();
 
 
-//createTask("Jogging", "around gateway for 30mins / 5km", "02/26/2025"  ,"mid", "123") ;
+//createTask("Jogging", "around gateway for 30mins / 5km", "02/26/2025"  ,"mid", "32") ;
 
 
 

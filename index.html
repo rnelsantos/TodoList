@@ -59,29 +59,52 @@
             
         </div>
         <div class="content wrapper">
-            <h1 id="currentActive">Inbox</h1>
+            <h1 id="currentActiveTitle">Inbox</h1>
             <div class="taskList">
-            </div>  
+        </div>  
 
-            <div class="addTask" >
-                <i class="fa-solid fa-plus">  </i>
-                <p >ADD TASK </p>
+        <div class="taskList-container">
+            <div class="taskContainer">
+    
+                <input 
+                id="task-1"
+                type="checkbox">
+                <label  for="task-1">
+                    <span class="custom-checkbox"></span>
+                    Pay Bills
+                </label>
+                
+                <p class="taskDetails">primeWater , Meralco , FiberBlaze, Rent, Credit Card</p>
+                <p class="date">Due Date: 02/26/2025</p>
             </div>
+            
+        </div>
+
+        <div class="addTask" >
+            <i class="fa-solid fa-plus">  </i>
+            <p >ADD TASK </p>
+        </div>
+
+          
 
 
             <div class="addTask-form hide">
-                <div class="cancel"><input class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark Xcancel" ></i> </i></div>
-                <form action="" data-new-task-form>
-                    <textarea 
-                        class="input-add-task-popup" 
-                        id="input-addTask-description" 
-                        type="text-area" 
-                        placeholder="Details">
-                    </textarea>
-                    <input type="date" class="input-add-task-button ">
-                    <button class="input-add-task-button">PRIORITY</button>
+
+                <div class="cancel">
+                    <input data-new-taskName-input required class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark Xcancel" ></i> </i></div>
+                <textarea data-new-taskDetails-input class="input-add-task-popup" id="input-addTask-description" type="text-area" placeholder="Details"></textarea>
+
+                <div class="addTaskInsideContainer">
+                    <input data-new-taskDate-input type="date" class="input-add-task-button">
+                    <select onchange="changeColor(this.value)" name="priority" id="prio" class="priority-input">
+                        <option class="setPrio" value="">Set Priority</option>
+                        <option class="low" value="low">Low</option>
+                        <option class="mid" value="mid">Mid</option>
+                        <option class="high" value="high">High</option>
+                    </select>
                     <button class="input-add-task-button">ADD TASK</button>
-                </form>
+                </div>
+   
             </div>
             
 

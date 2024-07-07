@@ -105,9 +105,9 @@ ProjectCancel.addEventListener("click", () => {
 
 function changeColor(value){ //change color for prio select on add task
     const prioInput = document.querySelector(".priority-input");
-    if(value  === "high") {prioInput.style.color ="greenyellow";}
-    if(value  === "high") {prioInput.style.color ="orange";}
-    if(value  === "high") {prioInput.style.color ="orangered";}
+    if(value  === "low") {prioInput.style.border ="2px solid green"}
+    if(value  === "mid") {prioInput.style.border ="2px solid orange"}
+    if(value  === "high") {prioInput.style.border ="2px solid red"}
     
    
 

@@ -61,14 +61,21 @@ const render =(function (){
             listElement.appendChild(editIcon);
             pElement.classList.add("activeTitle");
             //
-
+            render.displayActiveTitle(project.projectName);
         }
-
+       
         projectListContainer.appendChild(listElement)
         })
     }
 
-    return{clearElements,projectListDisplay};
+    const displayActiveTitle = (title) => {
+        const displayTitle = document.querySelector("#currentActiveTitle")
+        displayTitle.innerText = ""
+        displayTitle.innerText = title;
+
+    }
+
+    return{clearElements,projectListDisplay, displayActiveTitle};
 })();
 
 
@@ -81,7 +88,7 @@ const projectListContainer = document.querySelector("[data-project-list]");
 const newTaskNameInput = document.querySelector('[data-new-taskName-input]');
 const newTaskDetailsInput = document.querySelector('[data-new-taskDetails-input]');
 const newTaskDateInput = document.querySelector('[data-new-taskDate-input]');
-
+const addTaskBTN = document.querySelector('.input-add-task-button');
 
 
 //initial Load Calls
@@ -92,18 +99,23 @@ render.projectListDisplay(projectListContainer);
 const event =(function (){
 
 
-        //Submit New Task Form
-        newprojectForm.addEventListener("submit",e =>{
-            e.preventDefault()
-            const projectName = newProjectInput.value;
-            if (projectName == null || projectName === "") return
-            const project = newProject(projectName);
-            newProjectInput.value=null;
-            projectList.push(project);
-            saveLocal();render.projectListDisplay(projectListContainer);
-            addProjectBTN.classList.remove("hide");
-            addProjectForm.classList.add("hide");
-        })
+    //Submit New Task Form
+    addTaskBTN.addEventListener("click",e =>{
+      
+        const taskName = newTaskNameInput.value;
+        if (taskName == null || taskName === "") return
+        const TaskDetails = newTaskDetailsInput.value;
+        //if (TaskDetails == null || TaskDetails === "") return
+        
+        const project = newProject(projectName);
+
+
+        newProjectInput.value=null;
+        projectList.push(project);
+        saveLocal();render.projectListDisplay(projectListContainer);
+        addProjectBTN.classList.remove("hide");
+        addProjectForm.classList.add("hide");
+    })
 
     //Submit New Project Form
     newprojectForm.addEventListener("submit",e =>{
@@ -117,6 +129,7 @@ const event =(function (){
         addProjectBTN.classList.remove("hide");
         addProjectForm.classList.add("hide");
     })
+
 
     //Event Listeners
     newprojectForm.addEventListener("submit",e =>{
@@ -139,6 +152,7 @@ const event =(function (){
         saveLocal(); 
         render.projectListDisplay();
         event.listenEditProject();
+        
     }
     })
     
@@ -194,12 +208,18 @@ const event =(function (){
             saveLocal(); render.projectListDisplay();
             event.listenEditProject();
         });
+
+       
     })
     }
 
 
+
+
     
-    return{listenEditProject};
+    return{listenEditProject}
+
+
 })();
 
 

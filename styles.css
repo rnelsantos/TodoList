@@ -350,16 +350,23 @@ gap:5px;
 }
 
 .addTask-form{
+  display:grid;
   font-family: arial;
   font-size: 1em;
   border:2px solid var(--font-lighter-color);
   border-radius:10px;
   padding: 10px;
   color:var(--font-color);
+  gap:10px;
+  overflow:scroll;
+  scrollbar-width: none;
 }
+
+
 
 .input-add-task-button{
   font-weight: 600;
+  white-space: nowrap;
 }
 
 #input-addTask-title{
@@ -373,15 +380,111 @@ gap:5px;
   border-color: transparent;
   background:var(--background-color);
   resize: none;
-  
 
-  
+}
+
+/*----task Display Template------*/
+.taskList-container{
+ 
+
 }
 
 
+.taskContainer {
+  background-color: var(--background-color2);
+  border-radius: 10px;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.taskContainer{
+  align-items: center;
+  position: relative;
+  margin-bottom: 1em;
+  font-size: 13px;
+  cursor: default;
+  gap:10px;
+}
 
 
+.taskContainer::after{
+  content:"";
+  position:absolute;
+  right:0;
+  left:0;
+  bottom:-10%;
+  height:1.5px;
+  background-color: var(--font-lighter-color);
 
+}
+
+[type= "checkbox"] {
+  opacity:0;
+  position:absolute;
+}
+
+
+.custom-checkbox  {
+  --size:0.5em;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  cursor:pointer;
+  border:2px  solid var(--font-color);
+  border-radius: 50%;
+  transform: scale (1);
+  transition: transform 300ms ease-in-out;
+  font-size:2em;
+ 
+}
+
+.taskContainer:hover label .custom-checkbox {
+ transform: scale (1.2);
+
+ cursor: pointer;
+}
+
+.taskContainer > label{
+  display:flex-inline;
+  gap:10px;
+  align-items: center;
+  position: relative;
+  font-size: 1.4em;
+  
+}
+
+.taskContainer {
+  position: relative;
+  margin-bottom:1.25em;
+  
+}
+
+.taskContainer label::after {
+content:"";
+position: absolute;
+left:1.2em;
+right:0;
+top:calc(50% - 2px);
+height: 2px;
+background: var(--font-color);
+transform: scaleX(0);
+transform-origin: right;
+transition: transform 150ms ease-in-out;
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+background: green;
+}
+
+[type="checkbox"]:checked ~ label, [type="checkbox"]:checked ~ p {
+  opacity: 50%;
+}
+
+[type="checkbox"]:checked + label:after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
 
 
@@ -558,11 +661,12 @@ input[type="date"]{
 }
 
 
+
+
 .input-add-task-button{
   background-color: var(--background-color);
   color: var(--font-color);
   padding: 2px;
-  font-family: "Roboto Mono",monospace;
   font-size: 18px;
   border: none;
   border:2px solid  gray;
@@ -599,3 +703,15 @@ input[type="date"]{
 .hide, #hide{
   display: none;
 }
+
+.ProjectDeleteIcon{
+  margin-left:0;
+  margin-right: auto;
+}
+
+.addTaskInsideContainer > *, .input-add-task-button{
+  font-family: arial;
+  font-size: 1em;
+  font-weight: 600;
+}
+

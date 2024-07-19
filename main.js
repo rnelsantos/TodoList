@@ -105,6 +105,7 @@ const render =(function (){
             const dueDate = taskElement.querySelector(".date");
             const prio = taskElement.querySelector(".prio");
             const taskDetails = taskElement.querySelector(".taskDetails");
+            const taskDetailsContainer = taskElement.querySelector(".taskDetails-Container");
 
             
             checkbox.id = task.ID
@@ -112,9 +113,17 @@ const render =(function (){
             label.setAttribute("for", task.ID)
             label.append(task.TaskName)
             taskDetails.append(task.details)
-
+            if(task.details === null||""){taskDetails.append("do details provide")}
             dueDate.append(task.dueDate)
-            prio.append(task.priority)
+            prio.append(task.priority.toUpperCase())
+            if(task.priority  === "low") {prio.style.color ="lightgreen"}
+            if(task.priority  === "mid") {prio.style.color ="orange"}
+            if(task.priority  === "high") {prio.style.color ="red"}
+
+            taskDetailsContainer.append(taskDetails)
+            taskDetailsContainer.append(dueDate)
+            taskDetailsContainer.append(prio)
+          
 
             taskContainer.appendChild(taskElement);
 
@@ -158,7 +167,7 @@ const event =(function (){
 
     //Submit New Task Form
     addTaskBTN.addEventListener("click",e =>{
-      
+      console.log( "add task log")
         const taskName = newTaskNameInput.value;
         if (taskName == null || taskName === "") return
         const TaskDetails = newTaskDetailsInput.value;
@@ -288,7 +297,7 @@ const event =(function (){
 event.listenEditProject();
 
 
-//createTask("Jogging", "around gateway for 30mins / 5km", "02/26/2025"  ,"mid", "32") ;
+//createTask("Jogging", "around gateway for 30mins / 5km", "02/26/2025"  ,"mid") ;
 
 
 

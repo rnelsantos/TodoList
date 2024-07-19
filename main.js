@@ -307,9 +307,14 @@ const event =(function (){
             saveLocal(); render.projectListDisplay();
         });
         ProjectDeleteIcon.addEventListener('click', (e) => {
-            projectList =  projectList.filter(project => project.ID !== selectedProjectID )
-            selectedProjectID = null;
-            saveLocal(); render.projectListDisplay();
+            if (confirm("Are you sure you want to delete this Project?")) {
+                // User clicked OK
+                projectList =  projectList.filter(project => project.ID !== selectedProjectID )
+                selectedProjectID = null;
+                saveLocal(); render.projectListDisplay();
+              } else {
+                // Cancel
+              }
         });
         ProjectCancelIcon.addEventListener('click', (e) => {
             saveLocal(); render.projectListDisplay();
@@ -328,8 +333,10 @@ const event =(function (){
 
 
 
+if (selectedProjectID !== null){
+    event.listenEditProject();
+}
 
-event.listenEditProject();
 
 
 

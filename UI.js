@@ -1,3 +1,5 @@
+
+// Light/Dark Mode Theme  (HTML Color Change theme)
 function setTheme(theme, persist = false) {
     const on = theme;
     const off = theme === 'light' ? 'dark' : 'light'
@@ -11,7 +13,7 @@ function setTheme(theme, persist = false) {
     }
 }
 
-
+// Light/Dark Mode Theme (UI Switch change)
 const toggle = document.getElementById('toggle-input');
 const lightIcon = document.getElementById('light-icon');
 const darkIcon = document.getElementById('dark-icon');
@@ -44,7 +46,8 @@ setTheme(preferredTheme, false);
 updateUI(preferredTheme);
 
 
-
+//Nav auto hide in small screen.
+//open/close thru menu button
 const menu = document.querySelector(".navIcon");
 const main = document.querySelector("main");
 let menuStatus ="closed" ;
@@ -64,7 +67,7 @@ else{
 });
 
 
-
+//Show/Hide Add task form
 const addTask = document.querySelector(".addTask");
 const addTaskForm = document.querySelector(".addTask-form");
 const addTaskcancel = document.querySelector(".Xcancel");
@@ -83,6 +86,7 @@ addTaskcancel.addEventListener("click", () => {
 })
 
 
+//Show/Hide Add Project form
 const addProjectBTN = document.querySelector(".addProject");
 const addProjectForm = document.querySelector(".addProjectForm");
 const ProjectCancel = document.querySelector(".ProjectCancel");
@@ -103,16 +107,32 @@ ProjectCancel.addEventListener("click", () => {
 
 
 
-function changeColor(value){ //change color for prio select on add task
+function changeColor(value){ //change color for prior select on add task
     const prioInput = document.querySelector(".priority-input");
+    if(value  === "") {prioInput.style.border = ""}
     if(value  === "low") {prioInput.style.border ="2px solid green"}
     if(value  === "mid") {prioInput.style.border ="2px solid orange"}
     if(value  === "high") {prioInput.style.border ="2px solid red"}
-    
-   
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,3 +1,8 @@
+//import {addDays} from "date-fns";
+
+//const date = new Date();
+//const tom =addDays(date,1);
+//console.log();
 
 // save point for overall Project List
 const LOCAL_STORAGE_LIST_key = "project.lists"
@@ -26,7 +31,8 @@ function newProject (name) {
 }
 
 //Task Constructor
-function newTask (name, details, dueDate,priority, complete) {
+function newTask (name, details, dueDate,priority) {
+    const complete = false; 
     const TaskName = name;
     const ID = (Date.now()).toString();
     return {TaskName, details, dueDate, priority, ID, complete}
@@ -35,13 +41,16 @@ function newTask (name, details, dueDate,priority, complete) {
 
 
 const createTask = (TaskName, details, dueDate, priority, ID) => {
-    const task = newTask(TaskName, details, dueDate, priority, ID , false);
+    const task = newTask(TaskName, details, dueDate, priority, ID );
 
     const activeProject = projectList.find(project  => project.ID === selectedProjectID)
     activeProject.taskArray.push(task);
 
     saveLocal();render.projectListDisplay(projectListContainer);
     console.log(projectList)
+    
+    addTaskForm.classList.add("hide");
+    addTask.classList.remove("hide");
     }
 
 
@@ -113,8 +122,8 @@ const render =(function (){
             label.setAttribute("for", task.ID)
             label.append(task.TaskName)
             taskDetails.append(task.details)
-            if(task.details === null||""){taskDetails.append("do details provide")}
-            dueDate.append(task.dueDate)
+            if(taskDetails === null||""){taskDetails.append("do details provide")}
+            dueDate.append("Due Date: " + task.dueDate)
             prio.append(task.priority.toUpperCase())
             if(task.priority  === "low") {prio.style.color ="lightgreen"}
             if(task.priority  === "mid") {prio.style.color ="orange"}
@@ -174,11 +183,13 @@ const event =(function (){
         //if (TaskDetails == null || TaskDetails === "") return
         priority = newTaskPrioInput.value
          date= newTaskDateInput.value.toString() 
-        
-        console.log(date);
-        createTask(taskName, TaskDetails,  date ,priority) ;
+        createTask(taskName, TaskDetails,  date ,priority ) ;
         newTaskNameInput.value=null;
         saveLocal();render.projectListDisplay(projectListContainer);
+        //reset taskform
+        newTaskPrioInput.value = "";
+        newTaskDateInput.value = null;
+        newTaskDetailsInput.value = null;
         addProjectBTN.classList.remove("hide");
         addProjectForm.classList.add("hide");
     })
@@ -212,17 +223,45 @@ const event =(function (){
 
     //Select Active Project-list
     projectListContainer.addEventListener('click', (e) => {
-    console.log( e.target.tagName.toLowerCase() ) 
+        //console.log( e.target.tagName.toLowerCase() ) 
     if (e.target.tagName.toLowerCase() === 'li'|| e.target.tagName.toLowerCase() === 'p') {  
         selectedProjectID = e.target.closest("li").dataset.listID
         saveLocal(); 
         render.projectListDisplay();
         event.listenEditProject();
-        
-        
-        
     }
     })
+
+
+    //Listener for  task checkbox toggle
+        const taskContainer = document.querySelector("[data-task-container]");
+        taskContainer.addEventListener('click', (e) => {
+            //console.log( e.target.tagName.toLowerCase() ) 
+            if (e.target.tagName.toLowerCase() === 'input') {  
+                //console.log( e.target.closest("input").id ) 
+                const selectedProject = projectList.find(project => selectedProjectID === project.ID )
+                const selectedTask = selectedProject.taskArray.find(task => task.ID === e.target.closest("input").id )
+                
+                selectedTask.complete = e.target.checked;
+                saveLocal(); 
+                render.projectListDisplay();
+            }
+        });
+    
+    //listener for delete Completed Tasks
+    const deleteCopmepletedBTN = document.querySelector("[delete-completed-BTN]");
+    deleteCopmepletedBTN.addEventListener('click', (e) => {
+        const selectedProject = projectList.find(project => selectedProjectID === project.ID )
+        
+
+
+        selectedProject.taskArray =  selectedProject.taskArray.filter(task => task.complete === false )
+        saveLocal(); render.projectListDisplay();
+
+    });
+
+
+
     
 
     //Select Active Project-list
@@ -277,14 +316,10 @@ const event =(function (){
             event.listenEditProject();
         });
 
-       
     })
     }
 
-
-
-
-    
+   
     return{listenEditProject}
 
 
@@ -295,6 +330,7 @@ const event =(function (){
 
 
 event.listenEditProject();
+
 
 
 //createTask("Jogging", "around gateway for 30mins / 5km", "02/26/2025"  ,"mid") ;

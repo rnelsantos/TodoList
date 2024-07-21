@@ -418,8 +418,9 @@ scrollbar-width: 1px;
   display:flex;
   justify-content: center;
   align-items: center;
-  gap:10px;
-  max-width: 180px;
+  gap:5px;
+  width:auto;
+  max-width: auto;
   margin-left: auto;
   margin-right: 0;
 }

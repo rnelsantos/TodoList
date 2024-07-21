@@ -110,14 +110,21 @@
 .wrapper {
     display: grid;
     grid-template-columns:
-      1fr
-      min(200px, 100%)
+      100%
+      min(1200px, 100%)
       1fr;
       
   }
+
+
   .wrapper > * {
     grid-column: 2;
-
+   
+  
+    align-self: center;
+    width:100%;
+    max-width:1000PX;
+    
   
   }
   
@@ -318,6 +325,8 @@ padding-top:10px;
 
 display:flex;
 flex-direction:column;
+
+
 gap:5px;
 overflow-y: scroll;
 scrollbar-width: 1px;
@@ -329,6 +338,13 @@ scrollbar-width: 1px;
 #currentActive{
   width:100%;
 
+}
+
+.taskList-container{
+
+  align-self: center;
+  width:100%;
+  max-width:1000PX;
 }
 
 
@@ -396,9 +412,16 @@ scrollbar-width: 1px;
   border:3px solid var(--background-color2);
   padding: 5px;
   font-family: arial;
-  
   transform: scale (0.5);
   transition: transform 200ms ease-in-out;
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+  max-width: 180px;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 .deleteTasks:hover{
@@ -416,6 +439,7 @@ scrollbar-width: 1px;
   padding-bottom: 0.5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1em;
+  
 }
 
 

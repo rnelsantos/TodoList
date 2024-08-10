@@ -17,9 +17,9 @@
   "bugs": {
     "url": "https://github.com/rnelsantos/TodoList/issues"
   },
-
   "homepage": "https://github.com/rnelsantos/TodoList#readme",
   "dependencies": {
-    "date-fns": "^3.6.0"
+    "date-fns": "^3.6.0",
+    "moment": "^2.30.1"
   }
 }

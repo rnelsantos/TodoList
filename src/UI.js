@@ -1,4 +1,6 @@
 
+
+
 // Light/Dark Mode Theme  (HTML Color Change theme)
 function setTheme(theme, persist = false) {
     const on = theme;
@@ -124,8 +126,6 @@ function changeColor(value){ //change color for prior select on add task
     if(value  === "mid") {prioInput.style.border ="2px solid orange"}
     if(value  === "high") {prioInput.style.border ="2px solid red"}
 }
-
-
 
 
 

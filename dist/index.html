@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="shortcut icon" href="../assets/tickLogo.svg">
+    <link rel ="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/c6970a7e66.js" crossorigin="anonymous"></script>
+
+ 
+<script defer src="bundlesff4b01a7c06eae400e93.js"></script></head>
+
+<body>
+    <header class="header">
+        <img alt="menu" class="navIcon" id='logo' nav-Icon>
+        <div class="title-container">
+            <img  alt="Logo" id="logo" tick-Logo >
+            <h1>Todo List</h1>
+        </div>
+        <div class="toggle-container">
+            <label class="toggle-switch" for="toggle-input">
+                <input id="toggle-input" type="checkbox">
+                <div class="toggle-switch__control">
+                    <img src="https://radek.io/files/light-icon.svg" id="light-icon" class="icon">
+                    <img src="https://radek.io/files/dark-icon.svg" id="dark-icon" class="icon hide">
+                </div>
+            </label>
+        </div>
+    </header>
+    <main class="main-container">
+        <div class="NavPanel " >
+
+            <nav class="menuBar "><i class="fa-solid fa-inbox" ></i>INBOX</nav>
+            <nav class="menuBar "><i class="fa-solid fa-calendar-day"></i></i>TODAY</nav>
+            <nav class="menuBar "><i class="fa-solid fa-calendar-week"></i></i>THIS WEEK</nav>
+            <h2 class="iconMode" id="panelHeader">PROJECTS</h2>
+
+            <ul class="projectList" class="menuBar" data-project-list>
+                <li class="menuBar active-project"></li>
+                <li class="menuBar ">House Chorse / Bills</li>
+                <li class="menuBar ">Newsletter Website</li>
+            </ul>
+
+            <nav class="menuBar addProject"><i class="fa-solid fa-plus">  </i></i>Add project</nav>
+            <nav class="addProjectForm hide">
+                <i class="fa-solid fa-plus">  </i></i>
+                <form action="" data-new-project-form>
+                    <input 
+                    data-new-project-input 
+                    class="addProject-input" 
+                    type="text" 
+                    placeholder="Project Name"
+                    />
+                </form>
+                
+                <i class="fa-solid fa-xmark ProjectCancel" ></i>
+            </nav>
+            
+        </div>
+
+
+        
+        <div class="content wrapper">
+           
+            <h1 id="currentActiveTitle">Inbox</h1>
+            <div  delete-completed-BTN class="deleteTasks"><i class="fa-solid fa-trash-can" > </i>Remove Completed Tasks </div>
+            <div class="taskList">
+        </div>  
+
+        <div class="taskList-container" data-task-container>
+     
+
+           
+        </div>
+
+        <div class="addTask" >
+            <i class="fa-solid fa-plus">  </i>
+            <p >ADD TASK </p>
+        </div>
+
+          
+
+
+            <div class="addTask-form hide">
+
+                <div class="cancel">
+                    <input data-new-taskName-input required class="input-add-task-popup" id="input-addTask-title" type="text" placeholder="Task Name"> <i class="fa-solid fa-xmark Xcancel" ></i> </i></div>
+                <textarea data-new-taskDetails-input class="input-add-task-popup" id="input-addTask-description" type="text-area" placeholder="Details"></textarea>
+
+                <div class="addTaskInsideContainer">
+                    <input data-new-taskDate-input type="date" class="input-add-task-button">
+                    <select data-new-prio-input onchange="changeColor(this.value)" name="priority" id="prio" class="priority-input">
+                        <option class="setPrio" value="">Set Priority</option>
+                        <option class="low" value="low">Low</option>
+                        <option class="mid" value="mid">Mid</option>
+                        <option class="high" value="high">High</option>
+                    </select>
+                    <button input-add-task-button class="input-add-task-button">ADD TASK</button>
+                </div>
+   
+            </div>
+            
+
+
+            
+        </div>
+    </main> 
+
+
+
+    <template id="task-template">
+        <div class="taskContainer">
+            <input type="checkbox">
+            <label >
+                <span class="custom-checkbox"></span>
+            </label>
+            <div class="taskDetails-Container">
+                <p class="taskDetails"></p>
+                <p class="date"></p>
+                <p class="prio"></p>
+            </div>
+        </div>
+    </template>
+
+
+</body>
+</html>
